@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wavecast | Studio Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Mobile top bar (hamburger + logo), hidden on desktop -->
+  <div class="mobile-bar">
+    <button class="icon-btn" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
+      <span class="burger"></span>
+    </button>
+    <div class="logo logo--compact">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Wavecast
+    </div>
+    <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36A5.4 5.4 0 0 1 12 3Z" fill="currentColor"/></svg>
+    </button>
+  </div>
+
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="logo">
+          <span class="logo-mark" aria-hidden="true"></span>
+          Wavecast
+        </div>
+
+        <button class="show-switcher" id="showSwitcher" aria-haspopup="listbox" aria-expanded="false">
+          <div class="show-art" aria-hidden="true">NS</div>
+          <div class="show-meta">
+            <span class="show-label">Show</span>
+            <span class="show-name">The Night Shift</span>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" width="14" height="14"><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="show-list" id="showList" hidden>
+          <li data-show="The Night Shift" data-art="NS">The Night Shift</li>
+          <li data-show="Field Notes" data-art="FN">Field Notes</li>
+          <li data-show="Two Chairs" data-art="TC">Two Chairs</li>
+        </ul>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <p class="nav-label">Studio</p>
+        <ul>
+          <li><a href="#overview" class="nav-link is-active" data-section="overview">
+            <svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="3" width="7" height="9" rx="1.5" fill="currentColor"/><rect x="14" y="3" width="7" height="5" rx="1.5" fill="currentColor"/><rect x="14" y="12" width="7" height="9" rx="1.5" fill="currentColor"/><rect x="3" y="16" width="7" height="5" rx="1.5" fill="currentColor"/></svg>
+            Overview</a></li>
+          <li><a href="#episodes" class="nav-link" data-section="episodes">
+            <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor"/></svg>
+            Episodes</a></li>
+          <li><a href="#audience" class="nav-link" data-section="audience">
+            <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="9" cy="8" r="3.2" fill="currentColor"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="8.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.7 14.3c2.9.4 5 2.4 5 5.7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            Audience</a></li>
+          <li><a href="#revenue" class="nav-link" data-section="revenue">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2v20M17 6.5c0-1.9-2-3-5-3s-5 1.3-5 3.4 2.2 2.9 5 3.4 5 1.3 5 3.4S14.5 17 12 17s-5-1-5-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Revenue</a></li>
+        </ul>
+        <p class="nav-label">Manage</p>
+        <ul>
+          <li><a href="#settings" class="nav-link" data-section="settings">
+            <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V19.5a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H4.5a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1.1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H10a1.7 1.7 0 0 0 1-1.55V4.5a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V10c.14.43.5.8 1.55 1h.5a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            Settings</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggleDesktop">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        <span id="themeLabel">Dim the studio</span>
+      </button>
+    </aside>
+
+    <div class="scrim" id="scrim"></div>
+
+    <!-- Main content -->
+    <main class="main">
+
+      <header class="topbar">
+        <div class="search">
+          <svg viewBox="0 0 24 24" width="16" height="16"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search episodes, guests, sponsors…" aria-label="Search">
+        </div>
+        <div class="topbar-right">
+          <button class="icon-btn" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            <span class="badge-dot"></span>
+          </button>
+          <div class="profile">
+            <div class="avatar">MS</div>
+            <div class="profile-meta">
+              <span class="profile-name">Marzan Siam</span>
+              <span class="profile-role">Executive Producer</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="hero" id="overview">
+        <div class="hero-text">
+          <h1>Good evening, <span class="show-highlight">The Night Shift</span></h1>
+          <p class="hero-sub">Season 4, Episode 12 dropped 3 days ago · Sunday, August 30</p>
+        </div>
+        <div class="range-pills" role="group" aria-label="Date range">
+          <button class="pill" data-range="7">7D</button>
+          <button class="pill is-active" data-range="30">30D</button>
+          <button class="pill" data-range="90">90D</button>
+        </div>
+      </section>
+
+      <section class="stat-grid" aria-label="Key metrics">
+        <article class="stat-card" data-accent="teal">
+          <div class="stat-top">
+            <span class="stat-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 15V9M9 18V6M14 20V4M19 13v6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </span>
+            <span class="stat-delta up">▲ 12.4%</span>
+          </div>
+          <p class="stat-value" id="statListens">182,940</p>
+          <p class="stat-label">Total listens</p>
+        </article>
+
+        <article class="stat-card" data-accent="gold">
+          <div class="stat-top">
+            <span class="stat-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="9" cy="8" r="3" fill="currentColor"/><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            </span>
+            <span class="stat-delta up">▲ 4.8%</span>
+          </div>
+          <p class="stat-value" id="statSubs">9,184</p>
+          <p class="stat-label">Subscribers</p>
+        </article>
+
+        <article class="stat-card" data-accent="rose">
+          <div class="stat-top">
+            <span class="stat-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            </span>
+            <span class="stat-delta down">▼ 0.6%</span>
+          </div>
+          <p class="stat-value" id="statTime">38:12</p>
+          <p class="stat-label">Avg. listen time</p>
+        </article>
+
+        <article class="stat-card" data-accent="ink">
+          <div class="stat-top">
+            <span class="stat-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2v20M17 6.5c0-1.9-2-3-5-3s-5 1.3-5 3.4 2.2 2.9 5 3.4 5 1.3 5 3.4S14.5 17 12 17s-5-1-5-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            <span class="stat-delta up">▲ 21.9%</span>
+          </div>
+          <p class="stat-value" id="statRevenue">$3,412</p>
+          <p class="stat-label">Ad revenue</p>
+        </article>
+      </section>
+
+      <section class="grid-2">
+
+        <div class="panel waveform-panel" id="episodes">
+          <div class="panel-head">
+            <div>
+              <h2>Listens this week</h2>
+              <p class="panel-sub">Hover a bar for the daily count</p>
+            </div>
+            <span class="legend"><span class="legend-dot"></span>Listens</span>
+          </div>
+          <div class="waveform" id="waveform" role="img" aria-label="Bar chart of listens by day"></div>
+          <div class="waveform-labels" id="waveformLabels"></div>
+          <div class="tooltip" id="chartTooltip" hidden></div>
+        </div>
+
+        <div class="panel" id="revenue">
+          <div class="panel-head">
+            <div>
+              <h2>Top episodes</h2>
+              <p class="panel-sub">By share of plays, this month</p>
+            </div>
+          </div>
+          <ul class="episode-list" id="episodeList"></ul>
+        </div>
+
+      </section>
+
+      <section class="panel activity-panel" id="audience">
+        <div class="panel-head">
+          <div>
+            <h2>Recent listener activity</h2>
+            <p class="panel-sub">Reviews and comments coming in live</p>
+          </div>
+        </div>
+        <ul class="activity-feed" id="activityFeed"></ul>
+      </section>
+
+      <section class="panel settings-teaser" id="settings">
+        <div class="panel-head">
+          <div>
+            <h2>Studio settings</h2>
+            <p class="panel-sub">Distribution, sponsors, and team access</p>
+          </div>
+        </div>
+        <p class="teaser-copy">This is a front-end mock for the internship brief — wire these panels up to real data once the API layer exists.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Mobile bottom tab bar -->
+  <nav class="tab-bar" aria-label="Primary">
+    <a href="#overview" class="tab-link is-active" data-section="overview">
+      <svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="3" width="7" height="9" rx="1.5" fill="currentColor"/><rect x="14" y="3" width="7" height="5" rx="1.5" fill="currentColor"/><rect x="14" y="12" width="7" height="9" rx="1.5" fill="currentColor"/><rect x="3" y="16" width="7" height="5" rx="1.5" fill="currentColor"/></svg>
+      <span>Overview</span>
+    </a>
+    <a href="#episodes" class="tab-link" data-section="episodes">
+      <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor"/></svg>
+      <span>Episodes</span>
+    </a>
+    <a href="#audience" class="tab-link" data-section="audience">
+      <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="9" cy="8" r="3.2" fill="currentColor"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      <span>Audience</span>
+    </a>
+    <a href="#revenue" class="tab-link" data-section="revenue">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2v20M17 6.5c0-1.9-2-3-5-3s-5 1.3-5 3.4 2.2 2.9 5 3.4 5 1.3 5 3.4S14.5 17 12 17s-5-1-5-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Revenue</span>
+    </a>
+  </nav>
+
+<script src="app.js"></script>
+</body>
+</html>
